@@ -64,7 +64,10 @@ void Leg::MotorRotate(int t)
 {
   m1->RotateTo(moving_data->alpha[t]);
   m2->RotateTo(moving_data->beta[t]);
-  m3->RotateTo(moving_data->gama[t]);
+  if (f != 4)
+    m3->RotateTo(moving_data->gama[t]);
+  else
+    m3->TestServoRotateTo(moving_data->gama[t]);
 }
 
 void Leg::OriType()
