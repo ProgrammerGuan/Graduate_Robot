@@ -11,14 +11,16 @@ void setup()
     motorPins[i] = i + 2;
   }
   m_Robot.Initial(motorPins);
+  s.attach(13);
+  m_Robot.GetRBM3(&s);
   delay(2000);
 
-  m_Robot.OriType();
-  delay(1000);
-  m_Robot.Walk(3);
+  //  m_Robot.OriType();
+  //  delay(1000);
+  //  m_Robot.Walk(3);
 }
 
 void loop()
 {
-  // m_Robot.RobotTest();
+  m_Robot.RobotTest();
 }

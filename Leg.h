@@ -19,4 +19,5 @@ public:
     void Walk_Up();
     void Walk_Down();
     void Walk_MoveBody(int);
+    void GetRBM3(Servo *);
 };

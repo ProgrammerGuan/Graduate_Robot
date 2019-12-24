@@ -88,3 +88,8 @@ void Robot::Walk_MoveBody(int s)
   RB->Walk_MoveBody(s);
   delay(1000);
 }
+
+void Robot::GetRBM3(Servo *s)
+{
+  RBM3 = s;
+}
