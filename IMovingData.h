@@ -1,9 +1,9 @@
 class IMovingData
 {
 protected:
-    float theda = 25, fi = 13;
-    float b[4] = {2, 2, -1, 17};
-    float r[4] = {10, 12, 20, -2};
+    float theda = 23, fi = 13;
+    float b[4] = {-30, -30, -33, -11};
+    float r[4] = {41, 44, 51, 20};
 
 public:
     float alpha[4] = {0, 0, 0, 0};
