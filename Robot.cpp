@@ -26,6 +26,11 @@ void Robot::RobotTest()
   RB->LegTest();
 }
 
+void Robot::RobotTest2()
+{
+  RB->LegTest2();
+}
+
 void Robot::OriType()
 {
   LF->OriType();
@@ -47,33 +52,54 @@ void Robot::Walk(int cnt)
   }
 }
 
+void Robot::WalkLegTest(int cnt)
+{
+  switch (cnt)
+  {
+  case 1:
+    LF->Walk_Up();
+    break;
+  case 2:
+    LB->Walk_Up();
+    break;
+  case 3:
+    RF->Walk_Up();
+    break;
+  case 4:
+    RB->Walk_Up();
+    break;
+  default:
+    break;
+  }
+}
+
 void Robot::Walk_LegUpDown(int legcnt)
 {
   switch (legcnt)
   {
   case 1:
     LF->Walk_Up();
-    delay(1000);
+    delay(move_time);
     LF->Walk_Down();
-    delay(1000);
+    delay(move_time);
     break;
   case 2:
     LB->Walk_Up();
-    delay(1000);
+    delay(move_time);
     LB->Walk_Down();
-    delay(1000);
+    delay(move_time);
     break;
   case 3:
     RF->Walk_Up();
-    delay(1000);
+    delay(move_time);
     RF->Walk_Down();
-    delay(1000);
+    delay(move_time);
     break;
   case 4:
     RB->Walk_Up();
-    delay(1000);
+    delay(move_time);
     RB->Walk_Down();
-    delay(1000);
+    delay(move_time);
     break;
   default:
     break;
@@ -86,10 +112,34 @@ void Robot::Walk_MoveBody(int s)
   LB->Walk_MoveBody(s);
   RF->Walk_MoveBody(s);
   RB->Walk_MoveBody(s);
-  delay(1000);
+  delay(move_time);
+}
+
+void Robot::TurnRight(int cnt)
+{
+  for (int i = 0; i < cnt; i++)
+  {
+    // RB->TurnRight_Up();   //RB up
+    // TurnRightMoveBody(1); //movebody(1)
+    // RB->TurnRight_Down(); //RB down
+    // LB->TurnRight_Up();   //LB up
+    // TurnRightMoveBody(2); //movebody(2)
+    // LB->TurnRight_Down(); //LB down
+    // LF->TurnRight_Up();   //LF up
+    // TurnRightMoveBody(3); //movebody(3)
+    // LF->TurnRight_Down(); //LF down
+    // RF->TurnRight_Up();   //RF up
+    // TurnRightMoveBody(4); //movebody(4)
+    // RF->TurnRight_Down(); //RF down
+  }
+}
+
+void Robot::TurnRightMoveBody(int flag)
+{
 }
 
 void Robot::GetRBM3(Servo *s)
 {
   RBM3 = s;
+  RB->GetRBM3(s);
 }

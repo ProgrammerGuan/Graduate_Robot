@@ -11,13 +11,18 @@ public:
 
     Motor *m1, *m2, *m3;
     char m_name[2];
+    bool getRBM3_Servo = false;
     Leg(char[]);
     void Initial(int, int, int);
     void LegTest();
-    void MotorRotate(int);
+    void LegTest2();
+    void WalkMotorRotate(int);
     void OriType();
     void Walk_Up();
     void Walk_Down();
     void Walk_MoveBody(int);
+    void TurnRight_Up(int);
+    void TurnRight_Down(int);
+    void TurnRight_MoveBody(int);
     void GetRBM3(Servo *);
 };

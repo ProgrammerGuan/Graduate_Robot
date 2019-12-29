@@ -51,16 +51,18 @@ void Leg::Initial(int pin1, int pin2, int pin3)
     m1->Initial(pin1, 0);
     m2->Initial(pin2, 0);
   }
-  m3->Initial(pin3, 0);
+  if (f != 4)
+    m3->Initial(pin3, 0);
 }
 
 void Leg::GetRBM3(Servo *s)
 {
   m3 = new Motor("t");
   m3->Initial(s, 0);
+  getRBM3_Servo = true;
 }
 
-void Leg::MotorRotate(int t)
+void Leg::WalkMotorRotate(int t)
 {
   m1->RotateTo(moving_data->alpha[t]);
   m2->RotateTo(moving_data->beta[t]);
@@ -90,13 +92,13 @@ void Leg::OriType()
   default:
     break;
   }
-  MotorRotate(t);
+  WalkMotorRotate(t);
 }
 
 void Leg::Walk_Up()
 {
   int t = 3;
-  MotorRotate(t);
+  WalkMotorRotate(t);
 }
 
 void Leg::Walk_Down()
@@ -119,7 +121,7 @@ void Leg::Walk_Down()
   default:
     break;
   }
-  MotorRotate(t);
+  WalkMotorRotate(t);
 }
 
 void Leg::Walk_MoveBody(int type)
@@ -165,7 +167,19 @@ void Leg::Walk_MoveBody(int type)
       break;
     }
   }
-  MotorRotate(t);
+  WalkMotorRotate(t);
+}
+
+void Leg::TurnRight_Up(int t)
+{
+}
+
+void Leg::TurnRight_Down(int t)
+{
+}
+
+void Leg::TurnRight_MoveBody(int type)
+{
 }
 
 void Leg::LegTest()
@@ -187,5 +201,17 @@ void Leg::LegTest()
     m3->RotateTo(0);
   else
     m3->TestServoRotateTo(0);
+  delay(1000);
+}
+
+void Leg::LegTest2()
+{
+  m1->RotateTo(30);
+  m2->RotateTo(30);
+  m3->TestServoRotateTo(30);
+  delay(1000);
+  m1->RotateTo(0);
+  m2->RotateTo(0);
+  m3->TestServoRotateTo(0);
   delay(1000);
 }

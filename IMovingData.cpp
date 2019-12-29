@@ -10,6 +10,9 @@ MovingData_RF::MovingData_RF()
     {
         beta[i] = b[i];
         gama[i] = r[i];
+        turning_alpha[i] = turning_a[i];
+        turning_beta[i] = turning_b[i];
+        turning_gama[i] = turning_r[i];
     }
     LegFlag = 3;
 }
@@ -24,6 +27,9 @@ MovingData_RB::MovingData_RB()
     {
         beta[i] = b[i];
         gama[i] = r[i];
+        turning_alpha[i] = -turning_a[i];
+        turning_beta[i] = turning_b[i];
+        turning_gama[i] = turning_r[i];
     }
     LegFlag = 4;
 }
@@ -41,6 +47,9 @@ MovingData_LF::MovingData_LF()
         else
             beta[i] = 180 - b[i];
         gama[i] = -r[i];
+        turning_alpha[i] = turning_a[i] > 0 ? 180 - turning_a[i] : -180 - turning_a[i];
+        turning_beta[i] = turning_b[i] > 0 ? 180 - turning_b[i] : -180 - turning_b[i];
+        turning_gama[i] = -turning_r[i];
     }
     LegFlag = 1;
 }
@@ -58,6 +67,10 @@ MovingData_LB::MovingData_LB()
         else
             beta[i] = 180 - b[i];
         gama[i] = -r[i];
+
+        turning_alpha[i] = turning_a[i] > 0 ? 180 - turning_a[i] : -180 - turning_a[i];
+        turning_beta[i] = turning_b[i] > 0 ? 180 - turning_b[i] : -180 - turning_b[i];
+        turning_gama[i] = -turning_r[i];
     }
     LegFlag = 2;
 }
