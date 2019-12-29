@@ -5,7 +5,7 @@ class Robot
 public:
     Leg *RF, *RB, *LF, *LB;
     Servo *RBM3;
-    int move_time = 2000;
+    int move_time = 500;
     Robot();
     void Initial(int[]);
     void RobotTest();
@@ -14,8 +14,8 @@ public:
     void Walk(int);
     void Walk_Back(int);
     void WalkLegTest(int);
-    void Walk_MoveBody(int);
-    void Walk_LegUpDown(int);
+    void Walk_MoveBody(int, bool);
+    void Walk_LegUpDown(int, bool);
     void TurnRight(int);
     void TurnRightMoveBody(int);
     void GetRBM3(Servo *);

@@ -19,10 +19,10 @@ public:
     void WalkMotorRotate(int);
     void OriType();
     void Walk_Up();
-    void Walk_Down();
-    void Walk_MoveBody(int);
-    void TurnRight_Up(int);
-    void TurnRight_Down(int);
+    void Walk_Down(bool);
+    void Walk_MoveBody(int, bool);
+    void TurnRight_Up();
+    void TurnRight_Down();
     void TurnRight_MoveBody(int);
     void GetRBM3(Servo *);
 };

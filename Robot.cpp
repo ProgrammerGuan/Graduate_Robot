@@ -43,12 +43,25 @@ void Robot::Walk(int cnt)
 {
   for (int i = 0; i < cnt; i++)
   {
-    Walk_LegUpDown(3); //RF
-    Walk_MoveBody(1);
-    Walk_LegUpDown(2); //LB
-    Walk_LegUpDown(1); //LF
-    Walk_MoveBody(2);
-    Walk_LegUpDown(4); //RB
+    Walk_LegUpDown(3, true); //RF
+    Walk_MoveBody(1, true);
+    Walk_LegUpDown(2, true); //LB
+    Walk_LegUpDown(1, true); //LF
+    Walk_MoveBody(2, true);
+    Walk_LegUpDown(4, true); //RB
+  }
+}
+
+void Robot::Walk_Back(int cnt)
+{
+  for (int i = 0; i < cnt; i++)
+  {
+    Walk_LegUpDown(4, false); //RB
+    Walk_MoveBody(1, false);
+    Walk_LegUpDown(1, false); //LF
+    Walk_LegUpDown(2, false); //LB
+    Walk_MoveBody(2, false);
+    Walk_LegUpDown(3, false); //RF
   }
 }
 
@@ -73,32 +86,32 @@ void Robot::WalkLegTest(int cnt)
   }
 }
 
-void Robot::Walk_LegUpDown(int legcnt)
+void Robot::Walk_LegUpDown(int legcnt, bool forward)
 {
   switch (legcnt)
   {
   case 1:
     LF->Walk_Up();
     delay(move_time);
-    LF->Walk_Down();
+    LF->Walk_Down(forward);
     delay(move_time);
     break;
   case 2:
     LB->Walk_Up();
     delay(move_time);
-    LB->Walk_Down();
+    LB->Walk_Down(forward);
     delay(move_time);
     break;
   case 3:
     RF->Walk_Up();
     delay(move_time);
-    RF->Walk_Down();
+    RF->Walk_Down(forward);
     delay(move_time);
     break;
   case 4:
     RB->Walk_Up();
     delay(move_time);
-    RB->Walk_Down();
+    RB->Walk_Down(forward);
     delay(move_time);
     break;
   default:
@@ -106,12 +119,12 @@ void Robot::Walk_LegUpDown(int legcnt)
   }
 }
 
-void Robot::Walk_MoveBody(int s)
+void Robot::Walk_MoveBody(int s, bool forward)
 {
-  LF->Walk_MoveBody(s);
-  LB->Walk_MoveBody(s);
-  RF->Walk_MoveBody(s);
-  RB->Walk_MoveBody(s);
+  LF->Walk_MoveBody(s, forward);
+  LB->Walk_MoveBody(s, forward);
+  RF->Walk_MoveBody(s, forward);
+  RB->Walk_MoveBody(s, forward);
   delay(move_time);
 }
 
@@ -119,19 +132,24 @@ void Robot::TurnRight(int cnt)
 {
   for (int i = 0; i < cnt; i++)
   {
-    // RB->TurnRight_Up();   //RB up
-    // TurnRightMoveBody(1); //movebody(1)
-    // RB->TurnRight_Down(); //RB down
-    // LB->TurnRight_Up();   //LB up
-    // TurnRightMoveBody(2); //movebody(2)
-    // LB->TurnRight_Down(); //LB down
-    // LF->TurnRight_Up();   //LF up
-    // TurnRightMoveBody(3); //movebody(3)
-    // LF->TurnRight_Down(); //LF down
-    // RF->TurnRight_Up();   //RF up
-    // TurnRightMoveBody(4); //movebody(4)
-    // RF->TurnRight_Down(); //RF down
+    LF->TurnRight_Up();
+    LB->TurnRight_Up();
+    delay(move_time);
+    RF->TurnRight_MoveBody(1);
+    RB->TurnRight_MoveBody(1);
+    delay(move_time);
+    RF->TurnRight_Up();
+    RB->TurnRight_Up();
+    delay(move_time);
+    RF->TurnRight_Down();
+    RB->TurnRight_Down();
+    delay(move_time);
+    RF->TurnRight_MoveBody(2);
+    RB->TurnRight_MoveBody(2);
   }
+  LF->TurnRight_Down();
+  LB->TurnRight_Down();
+  delay(move_time);
 }
 
 void Robot::TurnRightMoveBody(int flag)

@@ -101,33 +101,31 @@ void Leg::Walk_Up()
   WalkMotorRotate(t);
 }
 
-void Leg::Walk_Down()
+void Leg::Walk_Down(bool forward)
 {
   int t = 0;
-  switch (f)
-  {
-  case 1:
-    t = 2;
-    break;
-  case 2:
-    t = 0;
-    break;
-  case 3:
-    t = 2;
-    break;
-  case 4:
-    t = 0;
-    break;
-  default:
-    break;
-  }
-  WalkMotorRotate(t);
-}
 
-void Leg::Walk_MoveBody(int type)
-{
-  int t = 0;
-  if (type == 1)
+  if (forward)
+  {
+    switch (f)
+    {
+    case 1:
+      t = 2;
+      break;
+    case 2:
+      t = 0;
+      break;
+    case 3:
+      t = 2;
+      break;
+    case 4:
+      t = 0;
+      break;
+    default:
+      break;
+    }
+  }
+  else
   {
     switch (f)
     {
@@ -136,26 +134,6 @@ void Leg::Walk_MoveBody(int type)
       break;
     case 2:
       t = 2;
-      break;
-    case 3:
-      t = 1;
-      break;
-    case 4:
-      t = 1;
-      break;
-    default:
-      break;
-    }
-  }
-  else if (type == 2)
-  {
-    switch (f)
-    {
-    case 1:
-      t = 1;
-      break;
-    case 2:
-      t = 1;
       break;
     case 3:
       t = 0;
@@ -167,19 +145,130 @@ void Leg::Walk_MoveBody(int type)
       break;
     }
   }
+
   WalkMotorRotate(t);
 }
 
-void Leg::TurnRight_Up(int t)
+void Leg::Walk_MoveBody(int type, bool forward)
 {
+  int t = 0;
+
+  if (forward)
+  {
+    if (type == 1)
+    {
+      switch (f)
+      {
+      case 1:
+        t = 0;
+        break;
+      case 2:
+        t = 2;
+        break;
+      case 3:
+        t = 1;
+        break;
+      case 4:
+        t = 1;
+        break;
+      default:
+        break;
+      }
+    }
+    else if (type == 2)
+    {
+      switch (f)
+      {
+      case 1:
+        t = 1;
+        break;
+      case 2:
+        t = 1;
+        break;
+      case 3:
+        t = 0;
+        break;
+      case 4:
+        t = 2;
+        break;
+      default:
+        break;
+      }
+    }
+  }
+  else
+  {
+    if (type == 1)
+    {
+      switch (f)
+      {
+      case 1:
+        t = 2;
+        break;
+      case 2:
+        t = 0;
+        break;
+      case 3:
+        t = 1;
+        break;
+      case 4:
+        t = 1;
+        break;
+      default:
+        break;
+      }
+    }
+    else if (type == 2)
+    {
+      switch (f)
+      {
+      case 1:
+        t = 1;
+        break;
+      case 2:
+        t = 1;
+        break;
+      case 3:
+        t = 2;
+        break;
+      case 4:
+        t = 0;
+        break;
+      default:
+        break;
+      }
+    }
+  }
+  WalkMotorRotate(t);
 }
 
-void Leg::TurnRight_Down(int t)
+void Leg::TurnRight_Up()
 {
+  if (f == 1 || f == 2)
+    m2->RotateTo(100);
+  else
+  {
+    m2->RotateTo(80);
+  }
+}
+
+void Leg::TurnRight_Down()
+{
+  if (f == 1 || f == 2)
+    m2->RotateTo(moving_data->beta[1]);
+  else
+  {
+    m1->RotateTo(-30);
+    m2->RotateTo(moving_data->beta[0]);
+  }
 }
 
 void Leg::TurnRight_MoveBody(int type)
 {
+  if (type == 1)
+    m1->RotateTo(30);
+  else if (type == 2)
+    m1->RotateTo(moving_data->alpha[0]);
 }
 
 void Leg::LegTest()
