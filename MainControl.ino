@@ -14,11 +14,18 @@ void setup()
   s.attach(13);
   m_Robot.GetRBM3(&s);
   delay(3000);
-
+  m_Robot.Throw();
+  delay(2000);
   m_Robot.OriType();
   delay(3000);
-  // m_Robot.Walk_Back(5);
+  m_Robot.WalkLegTest(3);
+  m_Robot.Walk_Back(14);
   m_Robot.TurnRight(3);
+  m_Robot.Walk_Back(7);
+  m_Robot.TurnRight(6);
+  m_Robot.Walk_Back(7);
+  m_Robot.TurnRight(3);
+  m_Robot.Walk_Back(14);
 }
 
 void loop()
