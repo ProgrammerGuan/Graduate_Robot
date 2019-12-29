@@ -18,7 +18,6 @@ void setup()
   delay(2000);
   m_Robot.OriType();
   delay(3000);
-  m_Robot.WalkLegTest(3);
   m_Robot.Walk_Back(14);
   m_Robot.TurnRight(3);
   m_Robot.Walk_Back(7);
