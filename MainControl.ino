@@ -21,7 +21,7 @@ void setup()
   m_Robot.Walk_Back(14);
   m_Robot.TurnRight(3);
   m_Robot.Walk_Back(7);
-  m_Robot.TurnRight(6);
+  m_Robot.TurnRight(8);
   m_Robot.Walk_Back(7);
   m_Robot.TurnRight(3);
   m_Robot.Walk_Back(14);
