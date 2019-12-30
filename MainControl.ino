@@ -14,8 +14,6 @@ void setup()
   s.attach(13);
   m_Robot.GetRBM3(&s);
   delay(3000);
-  m_Robot.Throw();
-  delay(2000);
   m_Robot.OriType();
   delay(3000);
   m_Robot.Walk_Back(14);

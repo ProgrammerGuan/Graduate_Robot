@@ -5,6 +5,7 @@ class Leg
 private:
     float L1 = 37.55, L2 = 70, L3 = 107.5;
     int f = 0;
+    int move_time = 300;
 
 public:
     IMovingData *moving_data;
@@ -24,5 +25,8 @@ public:
     void TurnRight_Up();
     void TurnRight_Down();
     void TurnRight_MoveBody(int);
+    void TurnLeft_UP();
+    void TurnLeft_Down();
+    void TurnLeft_MoveBody(int);
     void GetRBM3(Servo *);
 };

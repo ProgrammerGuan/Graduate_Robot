@@ -18,6 +18,7 @@ public:
     void Walk_MoveBody(int, bool);
     void Walk_LegUpDown(int, bool);
     void TurnRight(int);
+    void TurnLeft(int);
     void Throw();
     void GetRBM3(Servo *);
 };

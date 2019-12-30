@@ -271,6 +271,43 @@ void Leg::TurnRight_MoveBody(int type)
     m1->RotateTo(moving_data->alpha[0]);
 }
 
+void Leg::TurnLeft_UP()
+{
+  if (f == 3 || f == 4)
+    m2->RotateTo(80);
+  else
+  {
+    m2->RotateTo(100);
+  }
+}
+
+void Leg::TurnLeft_Down()
+{
+  if (f == 3 || f == 4)
+  {
+    m2->RotateTo(moving_data->beta[0]);
+  }
+  else
+  {
+    m1->RotateTo(-150);
+    m2->RotateTo(moving_data->beta[1]);
+  }
+}
+
+void Leg::TurnLeft_MoveBody(int type)
+{
+  if (type == 1)
+    m1->RotateTo(150);
+  else if (type == 2)
+  {
+    m2->RotateTo(100);
+    delay(move_time);
+    m1->RotateTo(moving_data->alpha[1]);
+    delay(move_time);
+    m2->RotateTo(moving_data->beta[1]);
+  }
+}
+
 void Leg::LegTest()
 {
   m1->RotateTo(30);

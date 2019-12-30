@@ -17,7 +17,7 @@ void Robot::Initial(int pins[12])
   RF->Initial(pins[6], pins[7], pins[8]);
   RB->Initial(pins[9], pins[10], pins[11]);
   pinMode(motorPin, OUTPUT);
-  digitalWrite(motorPin,LOW);
+  digitalWrite(motorPin, LOW);
 }
 
 void Robot::RobotTest()
@@ -155,11 +155,36 @@ void Robot::TurnRight(int cnt)
   delay(move_time);
 }
 
+void Robot::TurnLeft(int cnt)
+{
+  RF->TurnLeft_UP();
+  RB->TurnLeft_UP();
+  delay(move_time);
+  for (int i = 0; i < cnt; i++)
+  {
+    LF->TurnLeft_MoveBody(1);
+    LB->TurnLeft_MoveBody(1);
+    delay(move_time);
+    LF->TurnLeft_UP();
+    LB->TurnLeft_UP();
+    delay(move_time);
+    LF->TurnLeft_Down();
+    LB->TurnLeft_Down();
+    delay(move_time);
+  }
+  LF->TurnLeft_MoveBody(2);
+  LB->TurnLeft_MoveBody(2);
+  delay(move_time);
+  RF->TurnLeft_Down();
+  RB->TurnLeft_Down();
+  delay(move_time);
+}
+
 void Robot::Throw()
 {
-  digitalWrite(motorPin,HIGH);
+  digitalWrite(motorPin, HIGH);
   delay(3000);
-  digitalWrite(motorPin,LOW);
+  digitalWrite(motorPin, LOW);
 }
 
 void Robot::GetRBM3(Servo *s)
